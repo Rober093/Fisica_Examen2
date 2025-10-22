@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guía Física I - Parcial #2: Cinemática</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -16,6 +17,7 @@
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       padding: 20px;
       min-height: 100vh;
+      color: #333;
     }
 
     .container {
@@ -63,6 +65,10 @@
       font-size: 0.9em;
       font-weight: bold;
       transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
 
     .tab:hover {
@@ -91,6 +97,13 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
+    .icono-problema {
+      font-size: 3em;
+      text-align: center;
+      margin-bottom: 20px;
+      color: #667eea;
+    }
+
     .datos-box {
       background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
       padding: 20px;
@@ -102,6 +115,9 @@
     .datos-box h3 {
       color: #0c4a6e;
       margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .datos-box ul {
@@ -113,6 +129,9 @@
       color: #0c4a6e;
       padding: 5px 0;
       font-size: 1em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .procedimiento {
@@ -126,6 +145,9 @@
       color: #333;
       margin-bottom: 15px;
       font-size: 1.3em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .paso {
@@ -140,6 +162,9 @@
       color: #667eea;
       margin-bottom: 10px;
       font-size: 1.1em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .formula {
@@ -162,21 +187,6 @@
 
     .resultado strong {
       color: #155724;
-    }
-
-    .canvas-container {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      margin-top: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-    canvas {
-      width: 100%;
-      height: 400px;
-      border: 2px solid #e0e0e0;
-      border-radius: 8px;
     }
 
     .nota {
@@ -202,6 +212,102 @@
     .error strong {
       color: #721c24;
     }
+
+    .icono {
+      width: 24px;
+      text-align: center;
+    }
+
+    .visualizacion {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .visualizacion h3 {
+      color: #667eea;
+      margin-bottom: 10px;
+    }
+
+    .ilustracion {
+      font-size: 5em;
+      color: #667eea;
+      margin: 10px 0;
+    }
+
+    .ilustracion-pequena {
+      font-size: 2em;
+      margin: 0 10px;
+    }
+
+    .contenedor-iconos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin: 15px 0;
+    }
+
+    .flecha {
+      font-size: 2em;
+      color: #667eea;
+    }
+
+    .resumen {
+      background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .resumen h3 {
+      color: #0c4a6e;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .resumen ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .resumen li {
+      color: #0c4a6e;
+      padding: 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .formulas {
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 20px;
+    }
+
+    .formulas h3 {
+      color: #333;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .formula-item {
+      margin-bottom: 15px;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
@@ -215,29 +321,43 @@
   </div>
 
   <div class="tabs">
-    <button class="tab active" onclick="mostrarProblema(1)">🚂 Problema 1: Trenes</button>
-    <button class="tab" onclick="mostrarProblema(2)">🚴 Problema 2: Ciclista</button>
-    <button class="tab" onclick="mostrarProblema(3)">🚗 Problema 3: Aceleración</button>
-    <button class="tab" onclick="mostrarProblema(4)">🚙 Problema 4: Dos Autos</button>
-    <button class="tab" onclick="mostrarProblema(5)">🎡 Problema 5: Circular</button>
+    <button class="tab active" onclick="mostrarProblema(1)">
+      <i class="fas fa-train"></i>Problema 1: Trenes
+    </button>
+    <button class="tab" onclick="mostrarProblema(2)">
+      <i class="fas fa-bicycle"></i> Problema 2: Ciclista
+    </button>
+    <button class="tab" onclick="mostrarProblema(3)">
+      <i class="fas fa-car"></i> Problema 3: Aceleración
+    </button>
+    <button class="tab" onclick="mostrarProblema(4)">
+      <i class="fas fa-car-side"></i> Problema 4: Dos Autos
+    </button>
+    <button class="tab" onclick="mostrarProblema(5)">
+      <i class="fas fa-ferris-wheel"></i> Problema 5: Circular
+    </button>
   </div>
 
   <!-- PROBLEMA 1 -->
   <div id="problema1" class="problema active">
+    <div class="icono-problema">
+      <i class="fas fa-train"></i>
+    </div>
+
     <div class="datos-box">
-      <h3>📋 Datos del Problema 1: Trenes en Movimiento</h3>
+      <h3><i class="fas fa-clipboard-list"></i> Datos del Problema 1: Trenes en Movimiento</h3>
       <ul>
-        <li>• <strong>Tren A:</strong> v = 90 km/h, sale a las 8:00 a.m.</li>
-        <li>• <strong>Tren B:</strong> v = 120 km/h, sale a las 8:30 a.m.</li>
-        <li>• <strong>Tren C:</strong> v = 150 km/h, sale a las 9:00 a.m.</li>
+        <li><i class="fas fa-train icono"></i> <strong>Tren A:</strong> v = 90 km/h, sale a las 8:00 a.m.</li>
+        <li><i class="fas fa-train icono"></i> <strong>Tren B:</strong> v = 120 km/h, sale a las 8:30 a.m.</li>
+        <li><i class="fas fa-train icono"></i> <strong>Tren C:</strong> v = 150 km/h, sale a las 9:00 a.m.</li>
       </ul>
     </div>
 
     <div class="procedimiento">
-      <h3>🔍 Procedimiento y Solución</h3>
+      <h3><i class="fas fa-search"></i> Procedimiento y Solución</h3>
 
       <div class="paso">
-        <h4>a) ¿A qué hora el tren B alcanzará al tren A?</h4>
+        <h4><i class="fas fa-question-circle"></i> a) ¿A qué hora el tren B alcanzará al tren A?</h4>
         <p><strong>Ecuaciones de posición:</strong></p>
         <div class="formula">x_A = v_A × t = 90t</div>
         <div class="formula">x_B = v_B × (t - 0.5) = 120(t - 0.5)</div>
@@ -250,21 +370,21 @@
         <div class="formula">t = 2 horas</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> El tren B alcanza al tren A a las <strong>10:00 a.m.</strong> (2 horas después de las 8:00)
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> El tren B alcanza al tren A a las <strong>10:00 a.m.</strong> (2 horas después de las 8:00)
         </div>
       </div>
 
       <div class="paso">
-        <h4>b) ¿Qué distancia habrán recorrido desde la estación?</h4>
+        <h4><i class="fas fa-question-circle"></i> b) ¿Qué distancia habrán recorrido desde la estación?</h4>
         <div class="formula">d = v_A × t = 90 km/h × 2 h = 180 km</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Habrán recorrido <strong>180 km</strong> desde la estación
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Habrán recorrido <strong>180 km</strong> desde la estación
         </div>
       </div>
 
       <div class="paso">
-        <h4>c) ¿El tren C alcanzará a los otros trenes?</h4>
+        <h4><i class="fas fa-question-circle"></i> c) ¿El tren C alcanzará a los otros trenes?</h4>
 
         <p><strong>Tren C alcanza al Tren A:</strong></p>
         <div class="formula">90t = 150(t - 1)</div>
@@ -281,33 +401,53 @@
         <div class="formula">Distancia: d = 120 × 2.5 = 300 km</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> El tren C alcanza al tren A a las <strong>10:30 a.m. (225 km)</strong> y al tren B a las <strong>11:00 a.m. (300 km)</strong>
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> El tren C alcanza al tren A a las <strong>10:30 a.m. (225 km)</strong> y al tren B a las <strong>11:00 a.m. (300 km)</strong>
         </div>
       </div>
     </div>
 
-    <div class="canvas-container">
-      <h3>📊 Gráfica: Posición vs Tiempo</h3>
-      <canvas id="grafica1"></canvas>
+    <div class="visualizacion">
+      <h3><i class="fas fa-eye"></i> Visualización del Problema</h3>
+      <div class="contenedor-iconos">
+        <div>
+          <i class="fas fa-train ilustracion-pequena" style="color: #3b82f6;"></i>
+          <p>Tren A</p>
+        </div>
+        <i class="fas fa-arrow-right flecha"></i>
+        <div>
+          <i class="fas fa-train ilustracion-pequena" style="color: #10b981;"></i>
+          <p>Tren B</p>
+        </div>
+        <i class="fas fa-arrow-right flecha"></i>
+        <div>
+          <i class="fas fa-train ilustracion-pequena" style="color: #f97316;"></i>
+          <p>Tren C</p>
+        </div>
+      </div>
+      <p>Los trenes parten en diferentes momentos pero en la misma dirección</p>
     </div>
   </div>
 
   <!-- PROBLEMA 2 -->
   <div id="problema2" class="problema">
+    <div class="icono-problema">
+      <i class="fas fa-bicycle"></i>
+    </div>
+
     <div class="datos-box">
-      <h3>📋 Datos del Problema 2: Ciclista y Motocicleta</h3>
+      <h3><i class="fas fa-clipboard-list"></i> Datos del Problema 2: Ciclista y Motocicleta</h3>
       <ul>
-        <li>• <strong>Ciclista:</strong> v = 20 km/h, parte primero</li>
-        <li>• <strong>Motocicleta:</strong> v = 40 km/h, parte 30 minutos después</li>
-        <li>• <strong>Distancia a la tienda:</strong> 15 km</li>
+        <li><i class="fas fa-bicycle icono"></i> <strong>Ciclista:</strong> v = 20 km/h, parte primero</li>
+        <li><i class="fas fa-motorcycle icono"></i> <strong>Motocicleta:</strong> v = 40 km/h, parte 30 minutos después</li>
+        <li><i class="fas fa-store icono"></i> <strong>Distancia a la tienda:</strong> 15 km</li>
       </ul>
     </div>
 
     <div class="procedimiento">
-      <h3>🔍 Procedimiento y Solución</h3>
+      <h3><i class="fas fa-search"></i> Procedimiento y Solución</h3>
 
       <div class="paso">
-        <h4>a) ¿Cuánto tiempo después de que el ciclista salió, su hermano lo alcanza?</h4>
+        <h4><i class="fas fa-question-circle"></i> a) ¿Cuánto tiempo después de que el ciclista salió, su hermano lo alcanza?</h4>
         <p><strong>Ecuaciones de posición:</strong></p>
         <div class="formula">x_ciclista = 20t</div>
         <div class="formula">x_moto = 40(t - 0.5)</div>
@@ -320,26 +460,26 @@
         <div class="formula">t = 1 hora</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> El hermano alcanza al ciclista <strong>1 hora</strong> después de que este salió
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> El hermano alcanza al ciclista <strong>1 hora</strong> después de que este salió
         </div>
       </div>
 
       <div class="paso">
-        <h4>b) ¿A qué distancia de la casa se encuentran?</h4>
+        <h4><i class="fas fa-question-circle"></i> b) ¿A qué distancia de la casa se encuentran?</h4>
         <div class="formula">d = 20 km/h × 1 h = 20 km</div>
 
         <div class="error">
-          <strong>⚠️ Observación:</strong> Se encuentran a 20 km de la casa, pero la tienda está a solo 15 km.
+          <strong><i class="fas fa-exclamation-triangle"></i> Observación:</strong> Se encuentran a 20 km de la casa, pero la tienda está a solo 15 km.
           Esto significa que el encuentro ocurre <strong>después de pasar la tienda</strong>.
         </div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Se encuentran a <strong>20 km</strong> de la casa
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Se encuentran a <strong>20 km</strong> de la casa
         </div>
       </div>
 
       <div class="paso">
-        <h4>c) ¿Qué tiempo tardaría cada uno en llegar a la tienda si no se detienen?</h4>
+        <h4><i class="fas fa-question-circle"></i> c) ¿Qué tiempo tardaría cada uno en llegar a la tienda si no se detienen?</h4>
 
         <p><strong>Ciclista:</strong></p>
         <div class="formula">t = d/v = 15 km / 20 km/h = 0.75 h = 45 minutos</div>
@@ -349,98 +489,159 @@
         <div class="formula">Tiempo total desde salida del ciclista = 22.5 + 30 = 52.5 minutos</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Ciclista: <strong>45 minutos</strong> | Motocicleta: <strong>22.5 minutos de viaje</strong> (52.5 min desde que salió el ciclista)
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Ciclista: <strong>45 minutos</strong> | Motocicleta: <strong>22.5 minutos de viaje</strong> (52.5 min desde que salió el ciclista)
         </div>
       </div>
     </div>
 
-    <div class="canvas-container">
-      <h3>📊 Gráfica: Posición vs Tiempo</h3>
-      <canvas id="grafica2"></canvas>
+    <div class="visualizacion">
+      <h3><i class="fas fa-eye"></i> Visualización del Problema</h3>
+      <div class="contenedor-iconos">
+        <div>
+          <i class="fas fa-home ilustracion-pequena" style="color: #9333ea;"></i>
+          <p>Casa</p>
+        </div>
+        <i class="fas fa-arrow-right flecha"></i>
+        <div>
+          <i class="fas fa-bicycle ilustracion-pequena" style="color: #9333ea;"></i>
+          <p>Ciclista</p>
+        </div>
+        <i class="fas fa-arrow-right flecha"></i>
+        <div>
+          <i class="fas fa-store ilustracion-pequena" style="color: #059669;"></i>
+          <p>Tienda (15 km)</p>
+        </div>
+        <i class="fas fa-arrow-right flecha"></i>
+        <div>
+          <i class="fas fa-motorcycle ilustracion-pequena" style="color: #ec4899;"></i>
+          <p>Motocicleta</p>
+        </div>
+      </div>
+      <p>El ciclista parte primero, luego la motocicleta lo alcanza después de la tienda</p>
     </div>
   </div>
 
   <!-- PROBLEMA 3 -->
   <div id="problema3" class="problema">
+    <div class="icono-problema">
+      <i class="fas fa-car"></i>
+    </div>
+
     <div class="datos-box">
-      <h3>📋 Datos del Problema 3: Aceleración Constante</h3>
+      <h3><i class="fas fa-clipboard-list"></i> Datos del Problema 3: Aceleración Constante</h3>
       <ul>
-        <li>• <strong>Velocidad inicial:</strong> v₀ = 0 m/s (parte del reposo)</li>
-        <li>• <strong>Aceleración:</strong> a = 2 m/s²</li>
-        <li>• <strong>Movimiento:</strong> Línea recta</li>
+        <li><i class="fas fa-play-circle icono"></i> <strong>Velocidad inicial:</strong> v₀ = 0 m/s (parte del reposo)</li>
+        <li><i class="fas fa-tachometer-alt icono"></i> <strong>Aceleración:</strong> a = 2 m/s²</li>
+        <li><i class="fas fa-road icono"></i> <strong>Movimiento:</strong> Línea recta</li>
       </ul>
     </div>
 
     <div class="procedimiento">
-      <h3>🔍 Procedimiento y Solución</h3>
+      <h3><i class="fas fa-search"></i> Procedimiento y Solución</h3>
 
       <div class="paso">
-        <h4>a) ¿Qué velocidad tendrá después de 8 segundos?</h4>
+        <h4><i class="fas fa-question-circle"></i> a) ¿Qué velocidad tendrá después de 8 segundos?</h4>
         <p><strong>Fórmula:</strong> v = v₀ + at</p>
         <div class="formula">v = 0 + (2 m/s²)(8 s)</div>
         <div class="formula">v = 16 m/s</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Velocidad a los 8 segundos: <strong>16 m/s</strong>
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Velocidad a los 8 segundos: <strong>16 m/s</strong>
         </div>
       </div>
 
       <div class="paso">
-        <h4>b) ¿Qué distancia habrá recorrido en esos 8 segundos?</h4>
+        <h4><i class="fas fa-question-circle"></i> b) ¿Qué distancia habrá recorrido en esos 8 segundos?</h4>
         <p><strong>Fórmula:</strong> x = v₀t + ½at²</p>
         <div class="formula">x = 0 + ½(2 m/s²)(8 s)²</div>
         <div class="formula">x = 1 × 64 = 64 m</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Distancia recorrida: <strong>64 m</strong>
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Distancia recorrida: <strong>64 m</strong>
         </div>
       </div>
 
       <div class="paso">
-        <h4>c) ¿Cuánto tiempo tardará en alcanzar una velocidad de 30 m/s?</h4>
+        <h4><i class="fas fa-question-circle"></i> c) ¿Cuánto tiempo tardará en alcanzar una velocidad de 30 m/s?</h4>
         <p><strong>Fórmula:</strong> v = v₀ + at → t = (v - v₀)/a</p>
         <div class="formula">t = (30 - 0) / 2</div>
         <div class="formula">t = 15 s</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Tiempo necesario: <strong>15 segundos</strong>
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Tiempo necesario: <strong>15 segundos</strong>
         </div>
       </div>
 
       <div class="paso">
-        <h4>d) ¿Qué distancia habrá recorrido cuando alcance esa velocidad?</h4>
+        <h4><i class="fas fa-question-circle"></i> d) ¿Qué distancia habrá recorrido cuando alcance esa velocidad?</h4>
         <p><strong>Fórmula:</strong> v² = v₀² + 2ax → x = (v² - v₀²)/(2a)</p>
         <div class="formula">x = (30² - 0²) / (2 × 2)</div>
         <div class="formula">x = 900 / 4 = 225 m</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Distancia recorrida: <strong>225 m</strong>
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Distancia recorrida: <strong>225 m</strong>
         </div>
       </div>
     </div>
 
-    <div class="canvas-container">
-      <h3>📊 Gráfica: Velocidad y Posición vs Tiempo</h3>
-      <canvas id="grafica3"></canvas>
+    <div class="formulas">
+      <h3><i class="fas fa-calculator"></i> Fórmulas de Movimiento Rectilíneo Uniformemente Acelerado (MRUA)</h3>
+      <div class="formula-item">
+        <div class="formula">v = v₀ + at</div>
+        <p>Velocidad en función del tiempo</p>
+      </div>
+      <div class="formula-item">
+        <div class="formula">x = v₀t + ½at²</div>
+        <p>Posición en función del tiempo</p>
+      </div>
+      <div class="formula-item">
+        <div class="formula">v² = v₀² + 2ax</div>
+        <p>Velocidad en función de la posición</p>
+      </div>
+    </div>
+
+    <div class="visualizacion">
+      <h3><i class="fas fa-eye"></i> Visualización del Problema</h3>
+      <div class="contenedor-iconos">
+        <div>
+          <i class="fas fa-car-side ilustracion-pequena" style="color: #f97316;"></i>
+          <p>Auto en reposo</p>
+        </div>
+        <i class="fas fa-arrow-right flecha"></i>
+        <div>
+          <i class="fas fa-running ilustracion-pequena" style="color: #f97316;"></i>
+          <p>Acelerando</p>
+        </div>
+        <i class="fas fa-arrow-right flecha"></i>
+        <div>
+          <i class="fas fa-bolt ilustracion-pequena" style="color: #f97316;"></i>
+          <p>Alta velocidad</p>
+        </div>
+      </div>
+      <p>El automóvil acelera constantemente desde el reposo</p>
     </div>
   </div>
 
   <!-- PROBLEMA 4 -->
   <div id="problema4" class="problema">
+    <div class="icono-problema">
+      <i class="fas fa-car-side"></i>
+    </div>
+
     <div class="datos-box">
-      <h3>📋 Datos del Problema 4: Dos Automóviles</h3>
+      <h3><i class="fas fa-clipboard-list"></i> Datos del Problema 4: Dos Automóviles</h3>
       <ul>
-        <li>• <strong>Auto A:</strong> v₀ = 25 m/s, a = -3 m/s² (frenando)</li>
-        <li>• <strong>Auto B:</strong> v₀ = 0 m/s, a = 2 m/s² (acelerando)</li>
-        <li>• <strong>Separación inicial:</strong> B está 100 m adelante de A</li>
+        <li><i class="fas fa-car icono"></i> <strong>Auto A:</strong> v₀ = 25 m/s, a = -3 m/s² (frenando)</li>
+        <li><i class="fas fa-car-side icono"></i> <strong>Auto B:</strong> v₀ = 0 m/s, a = 2 m/s² (acelerando)</li>
+        <li><i class="fas fa-arrows-alt-h icono"></i> <strong>Separación inicial:</strong> B está 100 m adelante de A</li>
       </ul>
     </div>
 
     <div class="procedimiento">
-      <h3>🔍 Procedimiento y Solución</h3>
+      <h3><i class="fas fa-search"></i> Procedimiento y Solución</h3>
 
       <div class="paso">
-        <h4>a) ¿En qué tiempo los dos automóviles se encuentran?</h4>
+        <h4><i class="fas fa-question-circle"></i> a) ¿En qué tiempo los dos automóviles se encuentran?</h4>
         <p><strong>Ecuaciones de posición:</strong></p>
         <div class="formula">x_A = v₀t + ½at² = 25t - ½(3)t² = 25t - 1.5t²</div>
         <div class="formula">x_B = 100 + 0 + ½(2)t² = 100 + t²</div>
@@ -455,7 +656,7 @@
         <div class="formula">t = (10 ± √(-60)) / 2</div>
 
         <div class="error">
-          <strong>⚠️ Resultado importante:</strong> El discriminante es negativo (b² - 4ac = -60), lo que significa que <strong>NO hay solución real</strong>.
+          <strong><i class="fas fa-exclamation-triangle"></i> Resultado importante:</strong> El discriminante es negativo (b² - 4ac = -60), lo que significa que <strong>NO hay solución real</strong>.
           Esto indica que los automóviles <strong>NO se encuentran</strong>.
         </div>
 
@@ -466,50 +667,67 @@
         <div class="formula">Posición de B en t=8.33: x_B = 100 + (8.33)² = 169.39 m</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Los automóviles <strong>NO se encuentran</strong>. El auto A se detiene a 104.17 m, antes de alcanzar al auto B que está a 169.39 m
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Los automóviles <strong>NO se encuentran</strong>. El auto A se detiene a 104.17 m, antes de alcanzar al auto B que está a 169.39 m
         </div>
       </div>
 
       <div class="paso">
-        <h4>b) ¿A qué distancia del punto inicial del automóvil A ocurre el encuentro?</h4>
+        <h4><i class="fas fa-question-circle"></i> b) ¿A qué distancia del punto inicial del automóvil A ocurre el encuentro?</h4>
         <div class="error">
           Como no hay encuentro real, esta pregunta no aplica. El auto A frena y se detiene antes de alcanzar al auto B.
         </div>
       </div>
 
       <div class="paso">
-        <h4>c) ¿Cuál será la velocidad de cada automóvil en el momento del encuentro?</h4>
+        <h4><i class="fas fa-question-circle"></i> c) ¿Cuál será la velocidad de cada automóvil en el momento del encuentro?</h4>
         <div class="error">
           Como no hay encuentro real, esta pregunta no aplica.
         </div>
       </div>
     </div>
 
-    <div class="canvas-container">
-      <h3>📊 Gráfica: Posición vs Tiempo</h3>
-      <canvas id="grafica4"></canvas>
-      <p style="margin-top: 10px; color: #666; font-size: 0.9em;">
-        Nota: Las líneas no se cruzan porque el auto A se detiene antes de alcanzar al B
-      </p>
+    <div class="visualizacion">
+      <h3><i class="fas fa-eye"></i> Visualización del Problema</h3>
+      <div class="contenedor-iconos">
+        <div>
+          <i class="fas fa-car ilustracion-pequena" style="color: #dc2626;"></i>
+          <p>Auto A (frena)</p>
+        </div>
+        <i class="fas fa-arrow-right flecha"></i>
+        <div style="position: relative;">
+          <i class="fas fa-road ilustracion-pequena" style="color: #666; font-size: 3em;"></i>
+          <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold;">100 m</span>
+        </div>
+        <i class="fas fa-arrow-right flecha"></i>
+        <div>
+          <i class="fas fa-car-side ilustracion-pequena" style="color: #2563eb;"></i>
+          <p>Auto B (acelera)</p>
+        </div>
+      </div>
+      <p>El auto A frena mientras el auto B acelera, pero nunca se encuentran</p>
     </div>
   </div>
 
   <!-- PROBLEMA 5 -->
   <div id="problema5" class="problema">
+    <div class="icono-problema">
+      <i class="fas fa-ferris-wheel"></i>
+    </div>
+
     <div class="datos-box">
-      <h3>📋 Datos del Problema 5: Movimiento Circular (Rueda de Feria)</h3>
+      <h3><i class="fas fa-clipboard-list"></i> Datos del Problema 5: Movimiento Circular (Rueda de Feria)</h3>
       <ul>
-        <li>• <strong>Periodo:</strong> T = 20 segundos (una vuelta completa)</li>
-        <li>• <strong>Radio:</strong> r = 10 metros</li>
-        <li>• <strong>Tiempo analizado:</strong> 1 minuto = 60 segundos</li>
+        <li><i class="fas fa-clock icono"></i> <strong>Periodo:</strong> T = 20 segundos (una vuelta completa)</li>
+        <li><i class="fas fa-ruler-combined icono"></i> <strong>Radio:</strong> r = 10 metros</li>
+        <li><i class="fas fa-stopwatch icono"></i> <strong>Tiempo analizado:</strong> 1 minuto = 60 segundos</li>
       </ul>
     </div>
 
     <div class="procedimiento">
-      <h3>🔍 Procedimiento y Solución</h3>
+      <h3><i class="fas fa-search"></i> Procedimiento y Solución</h3>
 
       <div class="paso">
-        <h4>a) ¿Cuál es su frecuencia y su periodo?</h4>
+        <h4><i class="fas fa-question-circle"></i> a) ¿Cuál es su frecuencia y su periodo?</h4>
         <p><strong>Periodo (T):</strong></p>
         <div class="formula">T = 20 s (dado)</div>
 
@@ -517,34 +735,34 @@
         <div class="formula">f = 1/T = 1/20 s = 0.05 Hz</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Periodo: <strong>20 s</strong> | Frecuencia: <strong>0.05 Hz</strong> (5 vueltas por cada 100 segundos)
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Periodo: <strong>20 s</strong> | Frecuencia: <strong>0.05 Hz</strong> (5 vueltas por cada 100 segundos)
         </div>
       </div>
 
       <div class="paso">
-        <h4>b) ¿Cuál es su velocidad angular en radianes por segundo?</h4>
+        <h4><i class="fas fa-question-circle"></i> b) ¿Cuál es su velocidad angular en radianes por segundo?</h4>
         <p><strong>Fórmula:</strong> ω = 2π/T</p>
         <div class="formula">ω = (2 × π) / 20</div>
         <div class="formula">ω = 6.2832 / 20 = 0.314 rad/s</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Velocidad angular: <strong>0.314 rad/s</strong> ≈ <strong>π/10 rad/s</strong>
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Velocidad angular: <strong>0.314 rad/s</strong> ≈ <strong>π/10 rad/s</strong>
         </div>
       </div>
 
       <div class="paso">
-        <h4>c) Si el radio es de 10 metros, ¿cuál es la velocidad lineal?</h4>
+        <h4><i class="fas fa-question-circle"></i> c) Si el radio es de 10 metros, ¿cuál es la velocidad lineal?</h4>
         <p><strong>Fórmula:</strong> v = ω × r</p>
         <div class="formula">v = 0.314 rad/s × 10 m</div>
         <div class="formula">v = 3.14 m/s</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Velocidad lineal: <strong>3.14 m/s</strong> ≈ <strong>π m/s</strong>
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Velocidad lineal: <strong>3.14 m/s</strong> ≈ <strong>π m/s</strong>
         </div>
       </div>
 
       <div class="paso">
-        <h4>d) ¿Qué distancia habrá recorrido un pasajero después de 1 minuto?</h4>
+        <h4><i class="fas fa-question-circle"></i> d) ¿Qué distancia habrá recorrido un pasajero después de 1 minuto?</h4>
         <p><strong>Número de vueltas en 60 segundos:</strong></p>
         <div class="formula">n = t/T = 60 s / 20 s = 3 vueltas</div>
 
@@ -555,23 +773,44 @@
         <div class="formula">d = n × C = 3 × 62.83 = 188.5 m</div>
 
         <div class="resultado">
-          <strong>✓ Respuesta:</strong> Distancia recorrida en 1 minuto: <strong>188.5 m</strong> ≈ <strong>60π m</strong>
+          <strong><i class="fas fa-check-circle"></i> Respuesta:</strong> Distancia recorrida en 1 minuto: <strong>188.5 m</strong> ≈ <strong>60π m</strong>
         </div>
-      </div>
-
-      <div class="nota">
-        <strong>📝 Resumen de fórmulas del MCU:</strong><br>
-        • Periodo: T = tiempo de una vuelta<br>
-        • Frecuencia: f = 1/T<br>
-        • Velocidad angular: ω = 2π/T<br>
-        • Velocidad lineal: v = ω × r<br>
-        • Distancia en n vueltas: d = n × 2πr
       </div>
     </div>
 
-    <div class="canvas-container">
-      <h3>📊 Visualización: Rueda de Feria</h3>
-      <canvas id="grafica5"></canvas>
+    <div class="resumen">
+      <h3><i class="fas fa-clipboard-check"></i> Resumen de fórmulas del MCU</h3>
+      <ul>
+        <li><i class="fas fa-clock icono"></i> <strong>Periodo:</strong> T = tiempo de una vuelta</li>
+        <li><i class="fas fa-wave-square icono"></i> <strong>Frecuencia:</strong> f = 1/T</li>
+        <li><i class="fas fa-sync-alt icono"></i> <strong>Velocidad angular:</strong> ω = 2π/T</li>
+        <li><i class="fas fa-tachometer-alt icono"></i> <strong>Velocidad lineal:</strong> v = ω × r</li>
+        <li><i class="fas fa-route icono"></i> <strong>Distancia en n vueltas:</strong> d = n × 2πr</li>
+      </ul>
+    </div>
+
+    <div class="visualizacion">
+      <h3><i class="fas fa-eye"></i> Visualización del Problema</h3>
+      <div class="ilustracion">
+        <i class="fas fa-circle-notch fa-spin" style="color: #667eea;"></i>
+      </div>
+      <p>La rueda de feria gira con movimiento circular uniforme</p>
+      <div class="contenedor-iconos">
+        <div>
+          <i class="fas fa-user ilustracion-pequena" style="color: #dc2626;"></i>
+          <p>Pasajero</p>
+        </div>
+        <i class="fas fa-arrows-alt-h flecha"></i>
+        <div>
+          <i class="fas fa-ruler-combined ilustracion-pequena" style="color: #667eea;"></i>
+          <p>Radio = 10 m</p>
+        </div>
+        <i class="fas fa-arrows-alt-h flecha"></i>
+        <div>
+          <i class="fas fa-sync-alt ilustracion-pequena" style="color: #667eea;"></i>
+          <p>Periodo = 20 s</p>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -590,466 +829,7 @@
     // Mostrar el problema seleccionado
     document.getElementById('problema' + num).classList.add('active');
     tabs[num - 1].classList.add('active');
-
-    // Dibujar la gráfica correspondiente
-    dibujarGrafica(num);
   }
-
-  // Función para dibujar gráficas
-  function dibujarGrafica(num) {
-    const canvas = document.getElementById('grafica' + num);
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    const width = canvas.width = canvas.offsetWidth;
-    const height = canvas.height = 400;
-
-    // Limpiar canvas
-    ctx.clearRect(0, 0, width, height);
-
-    // Configuración de márgenes
-    const margin = { top: 40, right: 60, bottom: 60, left: 60 };
-    const graphWidth = width - margin.left - margin.right;
-    const graphHeight = height - margin.top - margin.bottom;
-
-    switch(num) {
-      case 1:
-        dibujarProblema1(ctx, margin, graphWidth, graphHeight);
-        break;
-      case 2:
-        dibujarProblema2(ctx, margin, graphWidth, graphHeight);
-        break;
-      case 3:
-        dibujarProblema3(ctx, margin, graphWidth, graphHeight);
-        break;
-      case 4:
-        dibujarProblema4(ctx, margin, graphWidth, graphHeight);
-        break;
-      case 5:
-        dibujarProblema5(ctx, margin, graphWidth, graphHeight);
-        break;
-    }
-  }
-
-  // Problema 1: Trenes
-  function dibujarProblema1(ctx, margin, graphWidth, graphHeight) {
-    const maxT = 3.5; // horas
-    const maxD = 350; // km
-
-    // Dibujar ejes
-    dibujarEjes(ctx, margin, graphWidth, graphHeight, 'Tiempo (h)', 'Posición (km)', maxT, maxD);
-
-    // Dibujar líneas de los trenes
-    ctx.lineWidth = 3;
-
-    // Tren A (azul)
-    ctx.strokeStyle = '#3b82f6';
-    ctx.beginPath();
-    for (let t = 0; t <= maxT; t += 0.1) {
-      const d = 90 * t;
-      const x = margin.left + (t / maxT) * graphWidth;
-      const y = margin.top + graphHeight - (d / maxD) * graphHeight;
-      if (t === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-
-    // Tren B (verde)
-    ctx.strokeStyle = '#10b981';
-    ctx.beginPath();
-    for (let t = 0.5; t <= maxT; t += 0.1) {
-      const d = 120 * (t - 0.5);
-      const x = margin.left + (t / maxT) * graphWidth;
-      const y = margin.top + graphHeight - (d / maxD) * graphHeight;
-      if (t === 0.5) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-
-    // Tren C (naranja)
-    ctx.strokeStyle = '#f97316';
-    ctx.beginPath();
-    for (let t = 1; t <= maxT; t += 0.1) {
-      const d = 150 * (t - 1);
-      const x = margin.left + (t / maxT) * graphWidth;
-      const y = margin.top + graphHeight - (d / maxD) * graphHeight;
-      if (t === 1) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-
-    // Puntos de encuentro
-    // Encuentro A-B
-    ctx.fillStyle = '#dc2626';
-    ctx.beginPath();
-    ctx.arc(margin.left + (2/maxT) * graphWidth, margin.top + graphHeight - (180/maxD) * graphHeight, 6, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Encuentro A-C
-    ctx.beginPath();
-    ctx.arc(margin.left + (2.5/maxT) * graphWidth, margin.top + graphHeight - (225/maxD) * graphHeight, 6, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Encuentro B-C
-    ctx.beginPath();
-    ctx.arc(margin.left + (3/maxT) * graphWidth, margin.top + graphHeight - (300/maxD) * graphHeight, 6, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Leyenda
-    ctx.font = 'bold 14px Arial';
-    ctx.fillStyle = '#3b82f6';
-    ctx.fillText('Tren A', margin.left + 20, margin.top + 20);
-    ctx.fillStyle = '#10b981';
-    ctx.fillText('Tren B', margin.left + 100, margin.top + 20);
-    ctx.fillStyle = '#f97316';
-    ctx.fillText('Tren C', margin.left + 180, margin.top + 20);
-  }
-
-  // Problema 2: Ciclista y Motocicleta
-  function dibujarProblema2(ctx, margin, graphWidth, graphHeight) {
-    const maxT = 1.5; // horas
-    const maxD = 30; // km
-
-    dibujarEjes(ctx, margin, graphWidth, graphHeight, 'Tiempo (h)', 'Posición (km)', maxT, maxD);
-
-    ctx.lineWidth = 3;
-
-    // Ciclista (morado)
-    ctx.strokeStyle = '#9333ea';
-    ctx.beginPath();
-    for (let t = 0; t <= maxT; t += 0.05) {
-      const d = 20 * t;
-      const x = margin.left + (t / maxT) * graphWidth;
-      const y = margin.top + graphHeight - (d / maxD) * graphHeight;
-      if (t === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-
-    // Motocicleta (rosa)
-    ctx.strokeStyle = '#ec4899';
-    ctx.beginPath();
-    for (let t = 0.5; t <= maxT; t += 0.05) {
-      const d = 40 * (t - 0.5);
-      const x = margin.left + (t / maxT) * graphWidth;
-      const y = margin.top + graphHeight - (d / maxD) * graphHeight;
-      if (t === 0.5) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-
-    // Punto de encuentro
-    const tEncuentro = 1;
-    const dEncuentro = 20;
-    const xEnc = margin.left + (tEncuentro / maxT) * graphWidth;
-    const yEnc = margin.top + graphHeight - (dEncuentro / maxD) * graphHeight;
-    ctx.fillStyle = '#dc2626';
-    ctx.beginPath();
-    ctx.arc(xEnc, yEnc, 6, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Línea de la tienda
-    ctx.strokeStyle = '#059669';
-    ctx.lineWidth = 2;
-    ctx.setLineDash([5, 5]);
-    ctx.beginPath();
-    const yTienda = margin.top + graphHeight - (15 / maxD) * graphHeight;
-    ctx.moveTo(margin.left, yTienda);
-    ctx.lineTo(margin.left + graphWidth, yTienda);
-    ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Etiqueta de la tienda
-    ctx.fillStyle = '#059669';
-    ctx.font = 'bold 12px Arial';
-    ctx.fillText('Tienda (15 km)', margin.left + 10, yTienda - 5);
-
-    // Leyenda
-    ctx.font = 'bold 14px Arial';
-    ctx.fillStyle = '#9333ea';
-    ctx.fillText('Ciclista', margin.left + 20, margin.top + 20);
-    ctx.fillStyle = '#ec4899';
-    ctx.fillText('Motocicleta', margin.left + 120, margin.top + 20);
-  }
-
-  // Problema 3: Aceleración
-  function dibujarProblema3(ctx, margin, graphWidth, graphHeight) {
-    const maxT = 16; // segundos
-    const maxV = 35; // m/s
-
-    dibujarEjes(ctx, margin, graphWidth, graphHeight, 'Tiempo (s)', 'Velocidad (m/s)', maxT, maxV);
-
-    ctx.lineWidth = 3;
-    ctx.strokeStyle = '#f97316';
-    ctx.beginPath();
-
-    for (let t = 0; t <= maxT; t += 0.5) {
-      const v = 2 * t;
-      const x = margin.left + (t / maxT) * graphWidth;
-      const y = margin.top + graphHeight - (v / maxV) * graphHeight;
-      if (t === 0) ctx.moveTo(x, y);
-      else ctx.lineTo(x, y);
-    }
-    ctx.stroke();
-
-    // Marcar puntos importantes
-    // 8 segundos
-    const t8 = 8;
-    const v8 = 16;
-    const x8 = margin.left + (t8 / maxT) * graphWidth;
-    const y8 = margin.top + graphHeight - (v8 / maxV) * graphHeight;
-    ctx.fillStyle = '#dc2626';
-    ctx.beginPath();
-    ctx.arc(x8, y8, 6, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#dc2626';
-    ctx.font = '12px Arial';
-    ctx.fillText('(8s, 16m/s)', x8 + 10, y8 - 10);
-
-    // 15 segundos
-    const t15 = 15;
-    const v15 = 30;
-    const x15 = margin.left + (t15 / maxT) * graphWidth;
-    const y15 = margin.top + graphHeight - (v15 / maxV) * graphHeight;
-    ctx.fillStyle = '#059669';
-    ctx.beginPath();
-    ctx.arc(x15, y15, 6, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.fillStyle = '#059669';
-    ctx.fillText('(15s, 30m/s)', x15 + 10, y15 - 10);
-  }
-
-  // Problema 4: Dos automóviles
-  function dibujarProblema4(ctx, margin, graphWidth, graphHeight) {
-    const maxT = 10; // segundos
-    const maxX = 200; // metros
-
-    dibujarEjes(ctx, margin, graphWidth, graphHeight, 'Tiempo (s)', 'Posición (m)', maxT, maxX);
-
-    ctx.lineWidth = 3;
-
-    // Auto A (rojo)
-    ctx.strokeStyle = '#dc2626';
-    ctx.beginPath();
-    for (let t = 0; t <= 8.33; t += 0.2) {
-      const x = 25 * t - 1.5 * t * t;
-      const xPos = margin.left + (t / maxT) * graphWidth;
-      const yPos = margin.top + graphHeight - (x / maxX) * graphHeight;
-      if (t === 0) ctx.moveTo(xPos, yPos);
-      else ctx.lineTo(xPos, yPos);
-    }
-    ctx.stroke();
-
-    // Auto B (azul)
-    ctx.strokeStyle = '#2563eb';
-    ctx.beginPath();
-    for (let t = 0; t <= maxT; t += 0.2) {
-      const x = 100 + t * t;
-      const xPos = margin.left + (t / maxT) * graphWidth;
-      const yPos = margin.top + graphHeight - (x / maxX) * graphHeight;
-      if (t === 0) ctx.moveTo(xPos, yPos);
-      else ctx.lineTo(xPos, yPos);
-    }
-    ctx.stroke();
-
-    // Punto donde A se detiene
-    const tStop = 8.33;
-    const xStop = 104.17;
-    const xStopPos = margin.left + (tStop / maxT) * graphWidth;
-    const yStopPos = margin.top + graphHeight - (xStop / maxX) * graphHeight;
-    ctx.fillStyle = '#dc2626';
-    ctx.beginPath();
-    ctx.arc(xStopPos, yStopPos, 6, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Posición de B cuando A se detiene
-    const xBStop = 100 + tStop * tStop;
-    const yBStop = margin.top + graphHeight - (xBStop / maxX) * graphHeight;
-    ctx.fillStyle = '#2563eb';
-    ctx.beginPath();
-    ctx.arc(xStopPos, yBStop, 6, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Leyenda
-    ctx.font = 'bold 14px Arial';
-    ctx.fillStyle = '#dc2626';
-    ctx.fillText('Auto A (frena)', margin.left + 20, margin.top + 20);
-    ctx.fillStyle = '#2563eb';
-    ctx.fillText('Auto B (acelera)', margin.left + 150, margin.top + 20);
-  }
-
-  // Problema 5: Movimiento circular
-  function dibujarProblema5(ctx, margin, graphWidth, graphHeight) {
-    const centerX = margin.left + graphWidth / 2;
-    const centerY = margin.top + graphHeight / 2;
-    const radius = Math.min(graphWidth, graphHeight) / 2 - 40;
-
-    // Dibujar la rueda
-    ctx.strokeStyle = '#667eea';
-    ctx.lineWidth = 4;
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, radius, 0, Math.PI * 2);
-    ctx.stroke();
-
-    // Dibujar radios
-    ctx.strokeStyle = '#94a3b8';
-    ctx.lineWidth = 2;
-    for (let i = 0; i < 8; i++) {
-      const angle = (i * Math.PI) / 4;
-      ctx.beginPath();
-      ctx.moveTo(centerX, centerY);
-      ctx.lineTo(
-              centerX + radius * Math.cos(angle),
-              centerY + radius * Math.sin(angle)
-      );
-      ctx.stroke();
-    }
-
-    // Centro
-    ctx.fillStyle = '#667eea';
-    ctx.beginPath();
-    ctx.arc(centerX, centerY, 8, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Pasajero en el borde
-    const pasajeroAngle = Math.PI / 6;
-    const pasajeroX = centerX + radius * Math.cos(pasajeroAngle);
-    const pasajeroY = centerY + radius * Math.sin(pasajeroAngle);
-    ctx.fillStyle = '#dc2626';
-    ctx.beginPath();
-    ctx.arc(pasajeroX, pasajeroY, 10, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Vector velocidad
-    ctx.strokeStyle = '#059669';
-    ctx.lineWidth = 3;
-    const velLength = 50;
-    const velAngle = pasajeroAngle + Math.PI / 2;
-    ctx.beginPath();
-    ctx.moveTo(pasajeroX, pasajeroY);
-    ctx.lineTo(
-            pasajeroX + velLength * Math.cos(velAngle),
-            pasajeroY + velLength * Math.sin(velAngle)
-    );
-    ctx.stroke();
-
-    // Flecha de velocidad
-    ctx.fillStyle = '#059669';
-    ctx.beginPath();
-    const arrowX = pasajeroX + velLength * Math.cos(velAngle);
-    const arrowY = pasajeroY + velLength * Math.sin(velAngle);
-    ctx.moveTo(arrowX, arrowY);
-    ctx.lineTo(
-            arrowX - 10 * Math.cos(velAngle - Math.PI / 6),
-            arrowY - 10 * Math.sin(velAngle - Math.PI / 6)
-    );
-    ctx.lineTo(
-            arrowX - 10 * Math.cos(velAngle + Math.PI / 6),
-            arrowY - 10 * Math.sin(velAngle + Math.PI / 6)
-    );
-    ctx.closePath();
-    ctx.fill();
-
-    // Etiquetas
-    ctx.font = 'bold 16px Arial';
-    ctx.fillStyle = '#333';
-    ctx.textAlign = 'center';
-    ctx.fillText('r = 10 m', centerX, centerY - radius - 20);
-    ctx.fillText('ω = 0.314 rad/s', centerX, centerY + radius + 35);
-
-    ctx.fillStyle = '#059669';
-    ctx.textAlign = 'left';
-    ctx.fillText('v = 3.14 m/s', arrowX + 10, arrowY - 10);
-
-    // Información adicional
-    ctx.fillStyle = '#667eea';
-    ctx.font = 'bold 14px Arial';
-    ctx.textAlign = 'left';
-    ctx.fillText('T = 20 s', margin.left + 10, margin.top + 20);
-    ctx.fillText('f = 0.05 Hz', margin.left + 10, margin.top + 40);
-  }
-
-  // Función auxiliar para dibujar ejes
-  function dibujarEjes(ctx, margin, graphWidth, graphHeight, labelX, labelY, maxX, maxY) {
-    ctx.strokeStyle = '#333';
-    ctx.lineWidth = 2;
-
-    // Eje X
-    ctx.beginPath();
-    ctx.moveTo(margin.left, margin.top + graphHeight);
-    ctx.lineTo(margin.left + graphWidth, margin.top + graphHeight);
-    ctx.stroke();
-
-    // Eje Y
-    ctx.beginPath();
-    ctx.moveTo(margin.left, margin.top);
-    ctx.lineTo(margin.left, margin.top + graphHeight);
-    ctx.stroke();
-
-    // Etiquetas de los ejes
-    ctx.fillStyle = '#333';
-    ctx.font = 'bold 14px Arial';
-    ctx.textAlign = 'center';
-    ctx.fillText(labelX, margin.left + graphWidth / 2, margin.top + graphHeight + 40);
-
-    ctx.save();
-    ctx.translate(margin.left - 40, margin.top + graphHeight / 2);
-    ctx.rotate(-Math.PI / 2);
-    ctx.fillText(labelY, 0, 0);
-    ctx.restore();
-
-    // Marcas del eje X
-    ctx.font = '12px Arial';
-    ctx.textAlign = 'center';
-    const numMarksX = 5;
-    for (let i = 0; i <= numMarksX; i++) {
-      const x = margin.left + (i / numMarksX) * graphWidth;
-      const value = ((i / numMarksX) * maxX).toFixed(1);
-      ctx.fillText(value, x, margin.top + graphHeight + 20);
-
-      // Línea de marca
-      ctx.strokeStyle = '#ddd';
-      ctx.beginPath();
-      ctx.moveTo(x, margin.top);
-      ctx.lineTo(x, margin.top + graphHeight);
-      ctx.stroke();
-    }
-
-    // Marcas del eje Y
-    ctx.textAlign = 'right';
-    const numMarksY = 5;
-    for (let i = 0; i <= numMarksY; i++) {
-      const y = margin.top + graphHeight - (i / numMarksY) * graphHeight;
-      const value = ((i / numMarksY) * maxY).toFixed(0);
-      ctx.fillText(value, margin.left - 10, y + 5);
-
-      // Línea de marca
-      ctx.strokeStyle = '#ddd';
-      ctx.beginPath();
-      ctx.moveTo(margin.left, y);
-      ctx.lineTo(margin.left + graphWidth, y);
-      ctx.stroke();
-    }
-  }
-
-  // Dibujar la primera gráfica al cargar
-  window.addEventListener('load', function() {
-    dibujarGrafica(1);
-  });
-
-  // Redibujar al cambiar tamaño de ventana
-  window.addEventListener('resize', function() {
-    const problemaActivo = document.querySelector('.problema.active');
-    if (problemaActivo) {
-      const num = parseInt(problemaActivo.id.replace('problema', ''));
-      dibujarGrafica(num);
-    }
-  });
-
-
 </script>
-
-
-
 </body>
 </html>
